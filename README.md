@@ -46,3 +46,40 @@ try{
 
 ```
 
+# 继承 extends
+##### class 类名 extends 父类
+## 成员属性
+##### 变量修饰符 public private protected
+##### self parent
+
+## 对象中成员的访问
+```
+$引用名 = new 类名
+$引用名->成员属性 = 赋值 // 对象属性赋值
+echo $引用名-> 成员属性 // 输出对象的属性
+$引用名->成员方法(参数) // 调用对象的方法
+```
+
+## 特殊对象引用$this
+```
+<?php
+/**
+    类的声明
+*/
+class Person {
+    public $age;
+    public function say($word){
+        echo "she say {$word}";
+    }
+    public function info(){
+        $this -> say("Hi");
+        return $this -> age;
+    }
+}
+$xiaohong = new Person();
+$xiaohong -> age = 22;
+$age = $xiaohong -> info();
+echo $age;
+?>
+```
+
