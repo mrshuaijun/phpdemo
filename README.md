@@ -83,3 +83,88 @@ echo $age;
 ?>
 ```
 
+## 析构函数
+```
+<?php
+/**
+* 测试构造方法和析构方法
+*/
+class Person {
+    public function __construct($name,$age) {
+        echo('hello'.$name);
+        echo "<hr>";
+        $this -> age = $age;
+        $this -> name = $name;
+    }
+    public function data(){
+        return $this -> age;
+    }
+    public function __destruct() {
+        // 用途 可以进行资源的释放 如 数据库关闭 读取文件的关闭
+        // 对象被销毁的时候执行
+        echo "bye bye {$this -> name} <br>";
+    }
+}
+
+new Person('first', 30);
+new Person('second', 30);
+?>
+```
+
+## 魔术方法 
+
+```
+<?php
+/**
+* 学习 public private protected
+*/
+class Person {
+    private $x = 1;
+    private $name = "xiaoming"; // 公有属性
+    private $age = 27; //私有属性
+    protected $money = 10; //受保护的
+
+    // 私有成员方法 不能在类外部直接访问
+    private function getAge() {
+        return $this -> age;
+    }
+    // 被保护的成员方法 不能在类的外部直接访问
+    protected function getMoney() {
+        return $this -> money;
+    }
+
+    public function userCard() {
+        echo "name-> ".$this -> name." age->".$this -> getAge()." money-> ".$this -> getMoney();
+    }
+    public function __set($key, $value) {
+        // 魔术方法的set 只针对保护的变量 和私有的变量
+        if($key = "name" && $value = "laowang") {
+            $this -> name = "xiaowang";
+        }
+    }
+    public function __get($key) {
+        if ($key == "age") {
+            return "girl not tell you";
+        }
+    }
+    public function __isset($key) {
+        if ($key == "age") {
+            return "private age";
+        }
+    }
+    public function __unset($key) {
+
+        if ($key == "age") {
+            return;
+        }
+    }
+}
+$xw = new Person();
+$xw -> name = "laowang";
+// echo $xw -> userCard();
+// echo $xw -> age;
+// echo isset($xw -> age);
+unset($xw -> x);
+echo $xw -> x;
+?>
+```
