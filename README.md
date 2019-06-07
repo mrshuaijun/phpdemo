@@ -45,8 +45,8 @@ try{
 ?>
 
 ```
-
-# 继承 extends
+# php面向对象
+## 继承 extends
 ##### class 类名 extends 父类
 ## 成员属性
 ##### 变量修饰符 public private protected
